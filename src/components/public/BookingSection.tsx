@@ -10,17 +10,6 @@ export default function BookingSection() {
   const [guests, setGuests] = useState('')
   const [date, setDate] = useState('')
   const [msg, setMsg] = useState('')
-  const [feedback, setFeedback] = useState<{ text: string; ok: boolean } | null>(null)
-
-  function submitForm() {
-    if (!name || !phone || !event || !hall) {
-      setFeedback({ text: '✦ Please fill in all required fields.', ok: false })
-      return
-    }
-    setFeedback({ text: '✦ Thank you! Your inquiry has been received. We will contact you within 24 hours.', ok: true })
-    setTimeout(() => setFeedback(null), 6000)
-  }
-
   function openWA(e: React.MouseEvent) {
     e.preventDefault()
     const text = `Assalamu Alaikum! I'm ${name || 'Guest'} and I'd like to inquire about booking Sapphire Palace Event Complex.\n\nEvent: ${event || 'event'}\nHall: ${hall || 'hall'}\nDate: ${date || 'TBD'}\nGuests: ${guests || 'TBD'}\n${msg ? 'Message: ' + msg : ''}`
@@ -123,19 +112,16 @@ export default function BookingSection() {
                 <label className="form-label">Message</label>
                 <textarea className="form-textarea" placeholder="Tell us about your vision, requirements or special requests..." value={msg} onChange={(e) => setMsg(e.target.value)} />
               </div>
+              {!name || !phone || !event || !hall ? (
+                <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '1px', marginBottom: '12px' }}>
+                  ✦ Fill in Name, Phone, Event Type and Hall to enable the button
+                </p>
+              ) : null}
               <div className="form-btns">
-                <button className="btn-gold" onClick={submitForm} style={{ cursor: 'pointer', border: 'none' }}>
-                  <span>Send Inquiry</span>
-                </button>
-                <a href="#" onClick={openWA} className="btn-outline" style={{ fontSize: '11px' }}>
-                  💬 WhatsApp
+                <a href="#" onClick={openWA} className="btn-gold" style={{ fontSize: '11px' }}>
+                  <span>💬 Send via WhatsApp</span>
                 </a>
               </div>
-              {feedback && (
-                <p style={{ marginTop: '14px', fontSize: '12px', color: feedback.ok ? 'var(--gold)' : '#ff9090', letterSpacing: '1px' }}>
-                  {feedback.text}
-                </p>
-              )}
             </div>
           </div>
         </div>
