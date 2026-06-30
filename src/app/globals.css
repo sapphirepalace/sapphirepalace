@@ -94,13 +94,13 @@ body{background:var(--sapphire);color:var(--white);font-family:'Montserrat',sans
 .hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;text-decoration:none}
 .hero-scroll span{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5)}
 .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--gold));animation:scrollPulse 2s infinite}
-.hero-stats{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);display:flex;gap:46px;animation:fadeInUp 1s 0.8s ease both;background:rgba(10,22,40,0.55);backdrop-filter:blur(12px);padding:18px 38px;border:1px solid var(--border-gold);max-width:calc(100vw - 32px);box-sizing:border-box}
-.stat-item{text-align:center;min-width:0}
+.hero-stats{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);display:flex;gap:46px;animation:fadeInUp 1s 0.8s ease both;background:rgba(10,22,40,0.55);backdrop-filter:blur(12px);padding:18px 38px;border:1px solid var(--border-gold)}
+.stat-item{text-align:center}
 .stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--gold);line-height:1}
 .stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:4px;white-space:nowrap}
 .stat-divider{width:1px;background:var(--border-gold-bright);align-self:stretch;flex-shrink:0}
-@media(max-width:640px){.hero-stats{gap:16px;padding:14px 16px;bottom:100px}.stat-num{font-size:22px}.stat-label{letter-spacing:1px}}
-@media(max-width:480px){.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;padding:16px;bottom:90px}.stat-divider{display:none}.stat-label{font-size:8px}}
+@media(max-width:640px){.hero-stats{gap:20px;padding:14px 20px;bottom:100px}.stat-num{font-size:24px}.stat-label{letter-spacing:1px}}
+@media(max-width:580px){.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;padding:16px 20px;bottom:90px;left:16px;right:16px;transform:none;width:auto}.stat-divider{display:none}.stat-label{white-space:normal}}
 @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @keyframes scrollPulse{0%,100%{opacity:0.4;transform:scaleY(0.7)}50%{opacity:1;transform:scaleY(1)}}
