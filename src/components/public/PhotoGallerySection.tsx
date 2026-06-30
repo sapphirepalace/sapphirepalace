@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import type { Photo } from '@/lib/types'
+import MediaMarquee from './MediaMarquee'
 
 interface Props {
   photos: Photo[]
@@ -41,20 +42,44 @@ export default function PhotoGallerySection({ photos }: Props) {
           </p>
         </div>
 
-        <div className="photo-gallery-grid reveal">
-          {photos.map((p, i) => (
-            <div key={p.id} className="photo-card" onClick={() => setIndex(i)}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.image_url} alt={p.title || 'Gallery photo'} loading="lazy" />
-              <div className="photo-overlay">
-                <span>View</span>
-                {(p.title || p.hall_tag || p.event_tag) && (
-                  <small>{p.title || [p.hall_tag, p.event_tag].filter(Boolean).join(' · ')}</small>
-                )}
+        {photos.length > 4 ? (
+          // Auto-scrolling marquee — duplicate the list for a seamless loop
+          <div className="reveal">
+            <MediaMarquee speed={45}>
+              {[...photos, ...photos].map((p, i) => (
+                <div
+                  key={`${p.id}-${i}`}
+                  className="media-marquee-item photo photo-card"
+                  onClick={() => setIndex(i % photos.length)}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.image_url} alt={p.title || 'Gallery photo'} loading="lazy" />
+                  <div className="photo-overlay">
+                    <span>View</span>
+                    {(p.title || p.hall_tag || p.event_tag) && (
+                      <small>{p.title || [p.hall_tag, p.event_tag].filter(Boolean).join(' · ')}</small>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </MediaMarquee>
+          </div>
+        ) : (
+          <div className="photo-gallery-grid reveal">
+            {photos.map((p, i) => (
+              <div key={p.id} className="photo-card" onClick={() => setIndex(i)}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={p.image_url} alt={p.title || 'Gallery photo'} loading="lazy" />
+                <div className="photo-overlay">
+                  <span>View</span>
+                  {(p.title || p.hall_tag || p.event_tag) && (
+                    <small>{p.title || [p.hall_tag, p.event_tag].filter(Boolean).join(' · ')}</small>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Lightbox */}

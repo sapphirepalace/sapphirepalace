@@ -304,6 +304,27 @@ footer{background:linear-gradient(180deg,var(--sapphire) 0%,#040b17 100%);border
 @media(max-width:1024px){.video-gallery-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.video-gallery-grid{grid-template-columns:1fr;gap:20px}}
 
+/* ─── Media marquee (auto-scrolling + drag + arrows) ─── */
+.media-marquee{position:relative;margin:48px 0;display:flex;align-items:center}
+/* viewport: the scrolling area, with edge fade mask */
+.media-marquee-viewport{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;touch-action:pan-y;flex:1;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.media-marquee-viewport::-webkit-scrollbar{display:none}
+.media-marquee-viewport:active{cursor:grabbing}
+.media-marquee-viewport.reduced{scroll-snap-type:x mandatory}
+.media-marquee-track{display:flex;gap:20px;width:max-content}
+.media-marquee-item{flex-shrink:0;scroll-snap-align:start;user-select:none;-webkit-user-drag:none}
+.media-marquee-item img{-webkit-user-drag:none;pointer-events:none}
+.media-marquee-item.photo{width:300px;aspect-ratio:1/1}
+.media-marquee-item.video{width:360px}
+@media(max-width:640px){.media-marquee-item.photo{width:220px}.media-marquee-item.video{width:280px}.media-marquee-track{gap:14px}}
+
+/* arrow controls */
+.marquee-arrow{flex-shrink:0;width:42px;height:42px;border-radius:50%;border:1px solid var(--border-gold);background:rgba(10,22,40,0.75);backdrop-filter:blur(8px);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;z-index:4}
+.marquee-arrow:hover{background:rgba(201,168,76,0.15);border-color:var(--gold);box-shadow:0 0 20px rgba(201,168,76,0.3)}
+.marquee-arrow.left{margin-right:-21px;margin-left:-4px}
+.marquee-arrow.right{margin-left:-21px;margin-right:-4px}
+@media(max-width:640px){.marquee-arrow{width:36px;height:36px}.marquee-arrow.left{margin-right:-18px}.marquee-arrow.right{margin-left:-18px}}
+
 /* Photo Gallery (admin-managed) */
 .photo-gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:48px 0}
 @media(max-width:1024px){.photo-gallery-grid{grid-template-columns:repeat(3,1fr)}}
