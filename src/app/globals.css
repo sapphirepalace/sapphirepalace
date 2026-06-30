@@ -77,7 +77,7 @@ body{background:var(--sapphire);color:var(--white);font-family:'Montserrat',sans
 .mobile-menu a:hover{color:var(--gold)}
 .mobile-close{position:absolute;top:24px;right:28px;font-size:28px;cursor:pointer;color:var(--gold);background:none;border:none;font-family:'Cormorant Garamond',serif}
 @media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}}
-#hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-bottom:90px}
 .hero-img{position:absolute;inset:0;background-image:url('/assets/images/hero.jpg');background-size:cover;background-position:center;filter:brightness(0.3)}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,22,40,0.75) 0%,rgba(10,22,40,0.35) 50%,rgba(10,22,40,0.85) 100%)}
 .hero-overlay2{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(201,168,76,0.07),transparent)}
@@ -91,16 +91,17 @@ body{background:var(--sapphire);color:var(--white);font-family:'Montserrat',sans
 .hero-title .line3{font-size:clamp(36px,5vw,64px);font-weight:300;letter-spacing:8px;color:rgba(255,255,255,0.7)}
 .hero-tagline{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin:30px 0 48px;animation:fadeInUp 1s 0.4s ease both}
 .hero-btns{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 1s 0.6s ease both}
-.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;text-decoration:none}
+.hero-scroll{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;text-decoration:none}
+@media(max-width:640px){.hero-scroll{display:none}}
 .hero-scroll span{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5)}
 .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,transparent,var(--gold));animation:scrollPulse 2s infinite}
-.hero-stats{position:absolute;bottom:110px;left:50%;transform:translateX(-50%);display:flex;gap:46px;animation:fadeInUp 1s 0.8s ease both;background:rgba(10,22,40,0.55);backdrop-filter:blur(12px);padding:18px 38px;border:1px solid var(--border-gold)}
+.hero-stats{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px 46px;margin-top:56px;animation:fadeInUp 1s 0.8s ease both;background:rgba(10,22,40,0.55);backdrop-filter:blur(12px);padding:18px 38px;border:1px solid var(--border-gold);max-width:100%;box-sizing:border-box}
 .stat-item{text-align:center}
 .stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--gold);line-height:1}
 .stat-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:4px;white-space:nowrap}
-.stat-divider{width:1px;background:var(--border-gold-bright);align-self:stretch;flex-shrink:0}
-@media(max-width:640px){.hero-stats{gap:20px;padding:14px 20px;bottom:100px}.stat-num{font-size:24px}.stat-label{letter-spacing:1px}}
-@media(max-width:580px){.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;padding:16px 20px;bottom:90px;left:16px;right:16px;transform:none;width:auto}.stat-divider{display:none}.stat-label{white-space:normal}}
+.stat-divider{width:1px;align-self:stretch;background:var(--border-gold-bright);flex-shrink:0}
+@media(max-width:640px){.hero-stats{gap:18px 28px;padding:16px 22px;margin-top:40px}.stat-num{font-size:26px}}
+@media(max-width:480px){.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 30px;padding:18px 22px;width:100%}.stat-divider{display:none}}
 @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @keyframes scrollPulse{0%,100%{opacity:0.4;transform:scaleY(0.7)}50%{opacity:1;transform:scaleY(1)}}

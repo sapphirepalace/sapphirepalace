@@ -19,15 +19,15 @@ export default function Hero() {
           <a href="#booking" className="btn-gold"><span>Book Your Event</span></a>
           <a href="#halls" className="btn-outline">Explore Halls</a>
         </div>
-      </div>
-      <div className="hero-stats">
-        <div className="stat-item"><div className="stat-num">4</div><div className="stat-label">Luxury Halls</div></div>
-        <div className="stat-divider" />
-        <div className="stat-item"><div className="stat-num">600+</div><div className="stat-label">Guest Capacity</div></div>
-        <div className="stat-divider" />
-        <div className="stat-item"><div className="stat-num">500+</div><div className="stat-label">Events Hosted</div></div>
-        <div className="stat-divider" />
-        <div className="stat-item"><div className="stat-num">100%</div><div className="stat-label">Satisfaction</div></div>
+        <div className="hero-stats">
+          <div className="stat-item"><div className="stat-num">4</div><div className="stat-label">Luxury Halls</div></div>
+          <div className="stat-divider" />
+          <div className="stat-item"><div className="stat-num">600+</div><div className="stat-label">Guest Capacity</div></div>
+          <div className="stat-divider" />
+          <div className="stat-item"><div className="stat-num">500+</div><div className="stat-label">Events Hosted</div></div>
+          <div className="stat-divider" />
+          <div className="stat-item"><div className="stat-num">100%</div><div className="stat-label">Satisfaction</div></div>
+        </div>
       </div>
       <a href="#about" className="hero-scroll">
         <span>Scroll</span>
