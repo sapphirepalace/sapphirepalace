@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { signOut } from '@/lib/actions/auth'
-import { Film, LogOut, LayoutDashboard, Menu, X } from 'lucide-react'
+import { Film, Image as ImageIcon, LogOut, LayoutDashboard, Menu, X } from 'lucide-react'
 
 export default function AdminSidebar() {
   const pathname = usePathname()
@@ -46,6 +46,14 @@ export default function AdminSidebar() {
           >
             <Film size={16} />
             Videos
+          </Link>
+          <Link
+            href="/admin/photos"
+            className={`admin-nav-item${pathname.startsWith('/admin/photos') ? ' active' : ''}`}
+            onClick={close}
+          >
+            <ImageIcon size={16} />
+            Photos
           </Link>
           <Link href="/" className="admin-nav-item" target="_blank" onClick={close}>
             <LayoutDashboard size={16} />

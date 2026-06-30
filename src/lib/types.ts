@@ -19,6 +19,19 @@ export interface Video {
   updated_at: string
 }
 
+export interface Photo {
+  id: string
+  title: string | null
+  storage_path: string
+  image_url: string
+  hall_tag: string | null
+  event_tag: string | null
+  sort_order: number
+  is_active: boolean
+  created_at: string
+  updated_at: string
+}
+
 export interface OEmbedInfo {
   thumbnailUrl: string
   title: string

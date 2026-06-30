@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import type { Video } from '@/lib/types'
+import type { Video, Photo } from '@/lib/types'
 import Navbar from '@/components/public/Navbar'
 import Hero from '@/components/public/Hero'
 import MarqueeStrip from '@/components/public/MarqueeStrip'
@@ -8,6 +8,7 @@ import ExperienceStrip from '@/components/public/ExperienceStrip'
 import HallsSection from '@/components/public/HallsSection'
 import ServicesSection from '@/components/public/ServicesSection'
 import GallerySection from '@/components/public/GallerySection'
+import PhotoGallerySection from '@/components/public/PhotoGallerySection'
 import WhySection from '@/components/public/WhySection'
 import TestimonialsSection from '@/components/public/TestimonialsSection'
 import BlogSection from '@/components/public/BlogSection'
@@ -20,13 +21,47 @@ import RevealAnimations from '@/components/public/RevealAnimations'
 
 export const revalidate = 300
 
+async function getVideos(): Promise<Video[]> {
+  try {
+    const supabase = await createClient()
+    const { data, error } = await supabase
+      .from('videos')
+      .select('*')
+      .eq('is_active', true)
+      .order('sort_order', { ascending: true })
+    if (error) {
+      console.error('Failed to load videos:', error.message)
+      return []
+    }
+    return (data ?? []) as Video[]
+  } catch (err) {
+    // Supabase unreachable (network timeout, etc.) — render page without videos
+    console.error('Supabase request failed:', err)
+    return []
+  }
+}
+
+async function getPhotos(): Promise<Photo[]> {
+  try {
+    const supabase = await createClient()
+    const { data, error } = await supabase
+      .from('photos')
+      .select('*')
+      .eq('is_active', true)
+      .order('sort_order', { ascending: true })
+    if (error) {
+      console.error('Failed to load photos:', error.message)
+      return []
+    }
+    return (data ?? []) as Photo[]
+  } catch (err) {
+    console.error('Supabase request failed:', err)
+    return []
+  }
+}
+
 export default async function Home() {
-  const supabase = await createClient()
-  const { data: videos } = await supabase
-    .from('videos')
-    .select('*')
-    .eq('is_active', true)
-    .order('sort_order', { ascending: true })
+  const [videos, photos] = await Promise.all([getVideos(), getPhotos()])
 
   return (
     <>
@@ -43,7 +78,13 @@ export default async function Home() {
       <div className="divider" />
       <ServicesSection />
       <div className="divider" />
-      <GallerySection videos={(videos ?? []) as Video[]} />
+      <GallerySection videos={videos} />
+      {photos.length > 0 && (
+        <>
+          <div className="divider" />
+          <PhotoGallerySection photos={photos} />
+        </>
+      )}
       <div className="divider" />
       <WhySection />
       <div className="divider" />
