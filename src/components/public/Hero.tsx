@@ -1,7 +1,16 @@
 export default function Hero() {
   return (
     <section id="hero">
-      <div className="hero-img" />
+      <video
+        className="hero-img"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/assets/images/hero.jpg"
+      >
+        <source src="/hero_video.mp4" type="video/mp4" />
+      </video>
       <div className="hero-overlay" />
       <div className="hero-overlay2" />
       <div className="hero-grid" />
